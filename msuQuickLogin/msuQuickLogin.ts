@@ -1,6 +1,5 @@
 // ==UserScript==
 // @name        MSU quick login
-// @namespace   Violentmonkey Scripts
 // @match       https://s1.lite.msu.edu/adm/roles?source=login
 // @match       https://loncapa.msu.edu/adm/login
 // @match       https://d2l.msu.edu/d2l/loginh/*

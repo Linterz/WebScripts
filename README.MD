@@ -1,0 +1,1 @@
+Please copy and paste *.js file extension into your perfered monkey extension
