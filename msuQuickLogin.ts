@@ -18,7 +18,7 @@ const auth = () => {
       "input[value='Receive a code via SMS']"
     ) as HTMLElement;
     if (recieveSmsCode !== null) {
-      // recieveSmsCode.click();
+      recieveSmsCode.click();
       observer.disconnect();
       console.log("disconnected");
     }

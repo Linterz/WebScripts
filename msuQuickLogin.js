@@ -15,7 +15,7 @@ const auth = () => {
     const observer = new MutationObserver(() => {
         let recieveSmsCode = document.querySelector("input[value='Receive a code via SMS']");
         if (recieveSmsCode !== null) {
-            // recieveSmsCode.click();
+            recieveSmsCode.click();
             observer.disconnect();
             console.log("disconnected");
         }
