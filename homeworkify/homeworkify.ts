@@ -1,15 +1,15 @@
 // ==UserScript==
-// @name        New script - homeworkify.net
+// @name        Homeworkify.net
 // @match       https://homeworkify.net/
 // @grant       none
 // @version     1.0
-// @author      Linterz
+// @author
 // ==/UserScript==
 
-const captcha = (authFlag) => {
+const captcha = () => {
     console.log("in captcha");
 
-    const observe = new MutationObserver(() => {
+    const observer = new MutationObserver(() => {
         let notRobotDiv = document.querySelector(
             ".message.success.loggedin"
         ) as HTMLElement;
@@ -18,44 +18,71 @@ const captcha = (authFlag) => {
                 ".captcha_container"
             ) as HTMLElement;
             notRobotButton?.click();
-            observe.disconnect();
+            observer.disconnect();
             console.log("disconnected");
         }
     });
     const target = document.querySelector("body") as HTMLElement;
     const config = { attributes: true, childList: true, subtree: true };
-    observe.observe(target, config);
-    
-    let captchaInsert = document.querySelector('input[placeholder="Type here..."]') as HTMLInputElement;
-    captchaInsert?.focus();
-    authFlag = false
+    observer.observe(target, config);
+
+    var captchaInsert = document.getElementById(
+        "cp-user-input"
+    ) as HTMLInputElement;
+
+    const observer2 = new MutationObserver(() => {
+        captchaInsert = document.getElementById(
+            "cp-user-input"
+        ) as HTMLInputElement;
+        if (captchaInsert !== null) {
+            captchaInsert.focus();
+            observer2.disconnect();
+            console.log("disconnected2");
+
+        }
+    });
+    const target2 = document.querySelector("body") as HTMLElement;
+    const config2 = { attributes: true, childList: true, subtree: true };
+    observer2.observe(target2, config2);
+
+    return;
 };
 
 const main = () => {
-    setTimeout(() => {
+    if (document.readyState === "complete") {
         var isAuthCalled = false;
-        const linkInput = document.querySelector(".hw-header-input");
+        const linkInput = document.querySelector(
+            ".hw-header-input"
+        ) as HTMLInputElement;
         const searchButton = document.querySelector(
             ".hw-header-button"
         ) as HTMLButtonElement;
-
+        linkInput?.focus();
         linkInput?.addEventListener("keydown", (e) => {
             let keyboardEvent = <KeyboardEvent>e;
             if (keyboardEvent.key === "Enter" && isAuthCalled === false) {
-                isAuthCalled = true
+                isAuthCalled = true;
                 console.log("Enter pressed for search");
                 searchButton?.click();
-                captcha(isAuthCalled);
+                captcha();
+                main();
             }
         });
-        
+
         searchButton.onclick = () => {
-            if (isAuthCalled === false){
-                isAuthCalled = true
-                captcha(isAuthCalled);
+            if (isAuthCalled === false) {
+                isAuthCalled = true;
+                captcha();
+                main();
             }
         };
-    }, 200);
+        console.log("in main");
+    } else {
+        console.log("not complete");
+        setTimeout(() => {
+            main();
+        }, 200);
+    }
 };
 
 main();

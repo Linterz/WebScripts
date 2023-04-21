@@ -1,49 +1,78 @@
 // ==UserScript==
-// @name        New script - homeworkify.net
+// @name        Homeworkify.net
 // @match       https://homeworkify.net/
 // @grant       none
 // @version     1.0
-// @author      Linterz
+// @author
 // ==/UserScript==
-const captcha = (authFlag) => {
+const captcha = () => {
     console.log("in captcha");
-    const observe = new MutationObserver(() => {
+    const observer = new MutationObserver(() => {
         let notRobotDiv = document.querySelector(".message.success.loggedin");
         if (notRobotDiv !== null) {
             let notRobotButton = document.querySelector(".captcha_container");
             notRobotButton === null || notRobotButton === void 0 ? void 0 : notRobotButton.click();
-            observe.disconnect();
+            observer.disconnect();
             console.log("disconnected");
         }
     });
     const target = document.querySelector("body");
     const config = { attributes: true, childList: true, subtree: true };
-    observe.observe(target, config);
-    let captchaInsert = document.querySelector('input[placeholder="Type here..."]');
-    captchaInsert === null || captchaInsert === void 0 ? void 0 : captchaInsert.focus();
-    authFlag = false;
+    observer.observe(target, config);
+    var captchaInsert = document.getElementById("cp-user-input");
+    var captchaButton = document.getElementById("verify-captcha");
+    const observer2 = new MutationObserver(() => {
+        captchaInsert = document.getElementById("cp-user-input");
+        if (captchaInsert !== null) {
+            captchaButton = document.getElementById("verify-captcha");
+            captchaInsert.focus();
+            observer2.disconnect();
+            console.log("disconnected2");
+        }
+    });
+    const target2 = document.querySelector("body");
+    const config2 = { attributes: true, childList: true, subtree: true };
+    observer2.observe(target2, config2);
+    captchaInsert === null || captchaInsert === void 0 ? void 0 : captchaInsert.addEventListener("keydown", (e) => {
+        let keyboardEvent = e;
+        if (keyboardEvent.key === "Enter") {
+            console.log("Enter pressed for captcha");
+            captchaButton === null || captchaButton === void 0 ? void 0 : captchaButton.click();
+        }
+    });
+    return;
 };
 const main = () => {
-    setTimeout(() => {
+    if (document.readyState === "complete") {
         var isAuthCalled = false;
         const linkInput = document.querySelector(".hw-header-input");
         const searchButton = document.querySelector(".hw-header-button");
+        linkInput === null || linkInput === void 0 ? void 0 : linkInput.focus();
         linkInput === null || linkInput === void 0 ? void 0 : linkInput.addEventListener("keydown", (e) => {
             let keyboardEvent = e;
             if (keyboardEvent.key === "Enter" && isAuthCalled === false) {
                 isAuthCalled = true;
                 console.log("Enter pressed for search");
                 searchButton === null || searchButton === void 0 ? void 0 : searchButton.click();
-                captcha(isAuthCalled);
+                captcha();
+                main();
             }
         });
         searchButton.onclick = () => {
             if (isAuthCalled === false) {
                 isAuthCalled = true;
-                captcha(isAuthCalled);
+                captcha();
+                main();
             }
         };
-    }, 200);
+        console.log("in main");
+    }
+    else {
+        console.log("not complete");
+        setTimeout(() => {
+            main();
+        }, 200);
+    }
 };
 main();
 export {};
