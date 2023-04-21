@@ -16,24 +16,17 @@ const captchaSubmit = (capInsert) => {
         if (keyboardEvent.key === "Enter") {
             console.log("Enter pressed for captcha");
             captchaButton.click();
-            // setInterval(() => { #DO NOT USE THIS 💀💀💀💀💀
-            //     let viewSolution = document.getElementById("view-solution") as HTMLButtonElement;
-            //     viewSolution?.click();
-
-            // }, 200);
-
-
-
-            // if (document.querySelector(".captcha-loader.complete")) {
-            //     setInterval(() => {
-            //         let viewSolution = document.getElementById("view-solution") as HTMLButtonElement;
-            //         viewSolution?.click();
-
-            //     }, 100)                
-            // }
+                setTimeout(() => {
+                    console.log("pressed view solution");
+                    
+                    let viewSolution = document.getElementById("view-solution") as HTMLButtonElement;
+                    
+                    viewSolution?.click();
+                }, 300)                
+            }
         }
-    });
-};
+    );
+    }
 
 const captcha = () => {
     console.log("in captcha");
