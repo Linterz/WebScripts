@@ -5,6 +5,26 @@
 // @version     1.0
 // @author
 // ==/UserScript==
+const captchaSubmit = (capInsert) => {
+    let captchaButton = document.getElementById("verify-captcha");
+    capInsert.addEventListener("keydown", (e) => {
+        let keyboardEvent = e;
+        if (keyboardEvent.key === "Enter") {
+            console.log("Enter pressed for captcha");
+            captchaButton.click();
+            setInterval(() => {
+                let viewSolution = document.getElementById("view-solution");
+                viewSolution === null || viewSolution === void 0 ? void 0 : viewSolution.click();
+            }, 200);
+            // if (document.querySelector(".captcha-loader.complete")) {
+            //     setInterval(() => {
+            //         let viewSolution = document.getElementById("view-solution") as HTMLButtonElement;
+            //         viewSolution?.click();
+            //     }, 100)                
+            // }
+        }
+    });
+};
 const captcha = () => {
     console.log("in captcha");
     const observer = new MutationObserver(() => {
@@ -20,27 +40,18 @@ const captcha = () => {
     const config = { attributes: true, childList: true, subtree: true };
     observer.observe(target, config);
     var captchaInsert = document.getElementById("cp-user-input");
-    var captchaButton = document.getElementById("verify-captcha");
     const observer2 = new MutationObserver(() => {
         captchaInsert = document.getElementById("cp-user-input");
         if (captchaInsert !== null) {
-            captchaButton = document.getElementById("verify-captcha");
             captchaInsert.focus();
             observer2.disconnect();
             console.log("disconnected2");
+            captchaSubmit(captchaInsert);
         }
     });
     const target2 = document.querySelector("body");
     const config2 = { attributes: true, childList: true, subtree: true };
     observer2.observe(target2, config2);
-    captchaInsert === null || captchaInsert === void 0 ? void 0 : captchaInsert.addEventListener("keydown", (e) => {
-        let keyboardEvent = e;
-        if (keyboardEvent.key === "Enter") {
-            console.log("Enter pressed for captcha");
-            captchaButton === null || captchaButton === void 0 ? void 0 : captchaButton.click();
-        }
-    });
-    return;
 };
 const main = () => {
     if (document.readyState === "complete") {

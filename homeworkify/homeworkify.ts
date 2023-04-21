@@ -6,6 +6,35 @@
 // @author
 // ==/UserScript==
 
+const captchaSubmit = (capInsert) => {
+    let captchaButton = document.getElementById(
+        "verify-captcha"
+    ) as HTMLButtonElement;
+
+    capInsert.addEventListener("keydown", (e) => {
+        let keyboardEvent = <KeyboardEvent>e;
+        if (keyboardEvent.key === "Enter") {
+            console.log("Enter pressed for captcha");
+            captchaButton.click();
+            // setInterval(() => { #DO NOT USE THIS 💀💀💀💀💀
+            //     let viewSolution = document.getElementById("view-solution") as HTMLButtonElement;
+            //     viewSolution?.click();
+
+            // }, 200);
+
+
+
+            // if (document.querySelector(".captcha-loader.complete")) {
+            //     setInterval(() => {
+            //         let viewSolution = document.getElementById("view-solution") as HTMLButtonElement;
+            //         viewSolution?.click();
+
+            //     }, 100)                
+            // }
+        }
+    });
+};
+
 const captcha = () => {
     console.log("in captcha");
 
@@ -34,18 +63,17 @@ const captcha = () => {
         captchaInsert = document.getElementById(
             "cp-user-input"
         ) as HTMLInputElement;
+
         if (captchaInsert !== null) {
             captchaInsert.focus();
             observer2.disconnect();
             console.log("disconnected2");
-
+            captchaSubmit(captchaInsert);
         }
     });
     const target2 = document.querySelector("body") as HTMLElement;
     const config2 = { attributes: true, childList: true, subtree: true };
     observer2.observe(target2, config2);
-
-    return;
 };
 
 const main = () => {
