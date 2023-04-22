@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name        Homeworkify.net
+// @name        quick homeworkify
 // @match       https://homeworkify.net/
-// @grant       none
+// @grant       MIT
 // @version     1.0
-// @author
+// @author      Linterz
 // ==/UserScript==
 
 const captchaSubmit = (capInsert) => {
@@ -16,17 +16,18 @@ const captchaSubmit = (capInsert) => {
         if (keyboardEvent.key === "Enter") {
             console.log("Enter pressed for captcha");
             captchaButton.click();
-                setTimeout(() => {
-                    console.log("pressed view solution");
-                    
-                    let viewSolution = document.getElementById("view-solution") as HTMLButtonElement;
-                    
-                    viewSolution?.click();
-                }, 300)                
-            }
+            setTimeout(() => {
+                console.log("pressed view solution");
+
+                let viewSolution = document.getElementById(
+                    "view-solution"
+                ) as HTMLButtonElement;
+
+                viewSolution?.click();
+            }, 300);
         }
-    );
-    }
+    });
+};
 
 const captcha = () => {
     console.log("in captcha");
