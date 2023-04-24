@@ -18,13 +18,11 @@ const captchaSubmit = (capInsert) => {
             captchaButton.click();
             setTimeout(() => {
                 console.log("pressed view solution");
-
                 let viewSolution = document.getElementById(
                     "view-solution"
                 ) as HTMLButtonElement;
-
                 viewSolution?.click();
-            }, 300);
+            }, 500);
         }
     });
 };
