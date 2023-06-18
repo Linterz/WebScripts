@@ -1,0 +1,33 @@
+! 2023-04-17 https://www.youtube.com
+www.youtube.com##.ytd-rich-section-renderer.style-scope > .ytd-rich-shelf-renderer.style-scope
+www.youtube.com###content > .ytd-rich-section-renderer.style-scope
+www.youtube.com###clarify-box
+
+
+www.youtube.com##ytd-shelf-renderer.style-scope:has(span:has-text(/Related to your search/i))
+www.youtube.com##ytd-shelf-renderer.style-scope:has(span:has-text(/For you/i))
+www.youtube.com##ytd-horizontal-card-list-renderer.ytd-item-section-renderer.style-scope:has(span:has-text(/Searches related to/i))
+www.youtube.com##ytd-horizontal-card-list-renderer.ytd-item-section-renderer.style-scope:has(span:has-text(/Learn while you\'re at home/i))
+www.youtube.com##ytd-shelf-renderer.style-scope:has(span:has-text(/Learn while you\'re at home/i))
+www.youtube.com##ytd-shelf-renderer.style-scope:has(span:has-text(/People also watched/i))
+www.youtube.com##ytd-rich-section-renderer.ytd-rich-grid-renderer.style-scope:has(span:has-text(/Short/i))
+www.youtube.com##ytd-guide-entry-renderer.style-scope:has(span:has-text(/Shorts/i))
+www.youtube.com##endpoint > .ytd-guide-entry-renderer.style-scope:has-text(/Shorts/i)
+www.youtube.com##ytd-compact-video-renderer.ytd-item-section-renderer.style-scope:nth-of-type(3):has-text(/shorts/i)
+
+! 2023-04-18 https://www.youtube.com
+
+www.youtube.com##ytd-guide-entry-renderer.ytd-guide-section-renderer.style-scope > .ytd-guide-entry-renderer.style-scope.yt-simple-endpoint:has-text(/shorts/i)
+www.youtube.com##ytd-reel-shelf-renderer.ytd-item-section-renderer.style-scope
+
+
+! 2023-05-19 https://twitter.com
+twitter.com##.r-13qz1uu.r-1ye8kvj.r-1jgb5lz.css-1dbjc4n > section.css-1dbjc4n > .css-1dbjc4n .r-1ny4l3l.r-1adg3ll.css-1dbjc4n > .css-1dbjc4n > .r-6416eg.r-o7ynqc.r-1yzf0co.r-ymttw5.r-1ny4l3l.r-1loqt21.css-1dbjc4n.css-18t94o4.css-4rbku5
+twitter.com##[aria-label$="trending now" i]
+twitter.com##[aria-label="who to follow" i]
+twitter.com##[aria-labelledby="accessible-list-0"]:nth-ancestor(3) ~ *
+twitter.com##.r-1w50u8q.r-1j3t67a.r-1h0z5md.r-1w6e6rj.r-18u37iz.css-1dbjc4n
+twitter.com##.r-1udh08x.r-1bro5k0.r-ku1wi2.r-rs99b7.r-1phboty.r-t23y2h.r-9cbz99.r-1u4rsef.css-1dbjc4n
+twitter.com##.r-1bro5k0.css-1dbjc4n
+twitter.com##div[aria-label^="Timeline"]>div>div>div>div>div>div>div>div>div>div:has-text(/^Follow$/):xpath(../../../../../../..)
+twitter.com##.r-13qz1uu.r-1ye8kvj.r-1jgb5lz.css-1dbjc4n > section.css-1dbjc4n > .css-1dbjc4n .r-1ny4l3l.r-1adg3ll.css-1dbjc4n > .css-1dbjc4n > .r-1f1sjgu.r-ymttw5.r-1ny4l3l.r-1wtj0ep.css-1dbjc4n
